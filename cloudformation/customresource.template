@@ -49,7 +49,7 @@ Resources:
 
             }
 
-      Runtime: nodejs4.3
+      Runtime: nodejs14.x
   SQSFunction: 
    Type: Custom::LambdaCallout
    Properties:
