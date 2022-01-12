@@ -4,7 +4,7 @@ Resources:
     Type: 'AWS::Lambda::Function'
     Properties:
       Handler: index.handler
-      Role: arn:aws:iam::018734259996:role/LambdaCustomResource
+      Role: arn:aws:iam::431508442254:role/LambdaCustomResource
       Code:
         ZipFile: !Sub |
             var AWS = require('aws-sdk');
