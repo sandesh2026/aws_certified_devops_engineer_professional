@@ -1,9 +1,9 @@
 AWSTemplateFormatVersion: 2010-09-09
 Parameters:
-LambdaRole:
-  Type: String
-  MinLength : '1'
-  Description: lambda IAM role with neccessary permissions
+  LambdaRole:
+    Type: String
+    MinLength : '1'
+    Description: lambda IAM role with neccessary permissions
 Resources:
   SQSOperationsFunction:
     Type: 'AWS::Lambda::Function'
