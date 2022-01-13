@@ -1,3 +1,21 @@
+AWSTemplateFormatVersion: 2010-09-09
+Parameters:
+  LambdaRole:
+    Type: String
+    MinLength : '1'
+    Description: lambda IAM role with neccessary permissions
+Resources:
+  SQSOperationsFunction:
+    Type: 'AWS::Lambda::Function'
+    Properties:
+      Handler: index.handler
+      Role: 
+        Fn::Sub:
+        - arn:aws:iam::431508442254:role/${Role}
+        - Role:
+           Ref: LambdaRole
+      Code:
+        ZipFile: !Sub |
 import json
 import boto3
 
