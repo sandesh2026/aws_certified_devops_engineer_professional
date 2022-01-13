@@ -9,7 +9,11 @@ Resources:
     Type: 'AWS::Lambda::Function'
     Properties:
       Handler: index.handler
-      Role: arn:aws:iam::431508442254:role/${LambdaRole}
+      Role: 
+        Fn::sub:
+        - arn:aws:iam::431508442254:role/${Role}
+        - Role:
+           Ref: LambdaRole
       Code:
         ZipFile: !Sub |
             var AWS = require('aws-sdk');
