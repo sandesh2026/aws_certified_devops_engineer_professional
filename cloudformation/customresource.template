@@ -10,7 +10,7 @@ Resources:
     Properties:
       Handler: index.handler
       Role: 
-        Fn::sub:
+        Fn::Sub:
         - arn:aws:iam::431508442254:role/${Role}
         - Role:
            Ref: LambdaRole
