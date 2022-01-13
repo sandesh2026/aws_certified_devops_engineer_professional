@@ -1,0 +1,23 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  LambdaRole:
+    Type: String
+    MinLength : '1'
+    Description: lambda IAM role with neccessary permissions
+Resources:
+  PullMarkets:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: PullMarkets
+      Handler: lambda/index.handler
+      Role: 
+        Fn::Sub:
+        - arn:aws:iam::431508442254:role/${Role}
+        - Role:
+           Ref: LambdaRole
+      Code:
+        S3Bucket: lambdafunc2026
+        S3Key: code
+      Runtime: nodejs14.x
+      Timeout: 300
