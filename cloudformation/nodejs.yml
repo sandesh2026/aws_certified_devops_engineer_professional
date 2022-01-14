@@ -5,6 +5,14 @@ Parameters:
     Type: String
     MinLength : '1'
     Description: lambda IAM role with neccessary permissions
+  BucketName:
+    Type: String
+    MinLength : '1'
+    Description: S3 bucket name in which lambda fuction resides
+  LambdaFolderPath:
+    Type: String
+    MinLength : '1'
+    Description: Folder path in which lambda fuction resides
 Resources:
   Myfunction:
     Type: AWS::Lambda::Function
@@ -17,6 +25,13 @@ Resources:
         - Role:
            Ref: LambdaRole
       Code:
-        S3Bucket: lambdafunction2027
-        S3Key: code/mylambda.zip
+        #S3Bucket: lambdafunction2027
+        S3Bucket: 
+          Ref: BucketName
+        #S3Key: code/mylambda.zip
+        S3Key: 
+          Fn::Sub:
+          - ${LambdaPath}/mylambda.zip
+          - LambdaPath:
+              Ref: LambdaFolderPath
       Runtime: nodejs14.x
