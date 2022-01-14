@@ -1,0 +1,22 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  LambdaRole:
+    Type: String
+    MinLength : '1'
+    Description: lambda IAM role with neccessary permissions
+Resources:
+  Myfunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: Myfunction
+      Handler: index.handler
+      Role: 
+        Fn::Sub:
+        - arn:aws:iam::431508442254:role/${Role}
+        - Role:
+           Ref: LambdaRole
+      Code:
+        S3Bucket: lambdafunction2027
+        S3Key: code/mylambda.zip
+      Runtime: nodejs14.x
